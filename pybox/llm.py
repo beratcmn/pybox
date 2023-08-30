@@ -54,8 +54,6 @@ class ChatWebUI:
                 with gr.Column(scale=0.05):
                     clear = gr.Button(self.clear_button_text)
 
-            userMessage = ""
-
             def user(user_message, history):
                 global userMessage
                 userMessage = user_message
