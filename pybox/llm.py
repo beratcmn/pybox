@@ -81,4 +81,4 @@ class ChatWebUI:
 
             gr.close_all()
             app.queue(concurrency_count=4)
-            app.launch(share=self.share, port=self.server_port)
+            app.launch(share=self.share, server_port=self.server_port)
