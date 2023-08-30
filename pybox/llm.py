@@ -9,7 +9,7 @@ class ChatWebUI:
             self, bot_callback: Callable[[str],
                                          str],
             title: str, header: str, chatbox_height=400, input_placeholder="Type your message here...",
-            send_button_text="Send", clear_button_text="🗑️", server_port=8000, share=True):
+            send_button_text="Send", clear_button_text="🗑️", server_port=8000, share=True, colab_stay_awake=False):
         """
         #### Creates a WebUI for a chatbot.
 
@@ -34,8 +34,9 @@ class ChatWebUI:
         self.clear_button_text = clear_button_text
         self.server_port = server_port
         self.share = share
+        self.colab_stay_awake = colab_stay_awake
 
-    def start_webui(self):
+    def start(self):
         """
         #### Starts the WebUI.
         """
@@ -80,3 +81,7 @@ class ChatWebUI:
             gr.close_all()
             app.queue(concurrency_count=4)
             app.launch(share=self.share, server_port=self.server_port)
+
+            while self.colab_stay_awake:
+                time.sleep(600)
+                print("|---- Colab is still running ----|")
