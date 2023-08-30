@@ -23,6 +23,20 @@ class ChatWebUI:
             clear_button_text (str, optional): Defaults to "🗑️".
             server_port (int, optional): Defaults to 8000.
             share (bool, optional): Defaults to True.
+            colab_stay_awake (bool, optional): This will keep Google Colab up. Defaults to False.
+
+        Example:
+            ```python
+            from pybox.llm import ChatWebUI
+
+            webui = ChatWebUI(
+                bot_callback=test_bot,
+                title="Test Bot",
+                header="# This is a test"
+            )
+
+            webui.start()
+            ```
         """
 
         self.bot_callback = bot_callback
