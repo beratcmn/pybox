@@ -56,7 +56,7 @@ class GradioChatWebUI:
 
     def start(self):
         """
-        #### Starts the WebUI.
+        Starts the WebUI.
         """
 
         with gr.Blocks(css="footer {visibility: hidden}") as app:
@@ -138,7 +138,7 @@ class Tester:
 
     def start(self):
         """
-        #### Starts the tester.
+        Starts the tester.
         """
 
         if self.questions_csv_path != "":
