@@ -99,3 +99,74 @@ class GradioChatWebUI:
             while self.colab_stay_awake:
                 time.sleep(600)
                 print("|---- Colab is still running ----|")
+
+
+class Tester:
+    def __init__(self, bot_callback: Callable[[str], str], questions: list[str], questions_csv_path=""):
+        """
+        #### Creates a tester for a chatbot.
+
+        Args:
+            bot_callback (Callable[[str], str]): This is the function Tester calls for interacting with the chatbot.
+            questions (list[str]): List of questions to ask the bot.
+            questions_csv_path (str, optional): Path to a CSV file containing questions. First column is `Questions`, second column is `Expected Answers`, and the third column is `Bot Answers`. Defaults to "".
+
+        Example:
+            ```python
+            from pybox.llm import Tester
+
+            tester = Tester(
+                bot_callback=test_bot,
+                questions=["Hello", "How are you?", "What is your name?"]
+            )
+
+            tester.start()
+            ```
+        """
+
+        self.bot_callback = bot_callback
+        self.questions = questions
+        self.questions_csv_path = questions_csv_path
+
+    def start(self):
+        """
+        #### Starts the tester.
+        """
+
+        if self.questions_csv_path != "":
+            import pandas as pd
+            import csv
+
+            df = pd.read_csv(self.questions_csv_path)
+            self.questions = df["Questions"].tolist()
+            self.expected_answers = df["Expected Answers"].tolist()
+
+            with open("results.csv", "w", newline="") as file:
+                writer = csv.writer(file)
+                writer.writerow(["Questions", "Expected Answers", "Bot Answers"])
+
+            # Start the test
+            for question in self.questions:
+                answer = self.bot_callback(question)
+
+                with open("results.csv", "a", newline="") as file:
+                    writer = csv.writer(file)
+                    writer.writerow([question, self.expected_answers[self.questions.index(question)], answer])
+
+        else:
+            import csv
+
+            with open("results.csv", "w", newline="") as file:
+                writer = csv.writer(file)
+                writer.writerow(["Questions", "Bot Answers"])
+
+            # Start the test
+            for question in self.questions:
+                answer = self.bot_callback(question)
+
+                with open("results.csv", "a", newline="") as file:
+                    writer = csv.writer(file)
+                    writer.writerow([question, answer])
+
+        print("Testing complete.")
+        print("You can find the results in the results.csv file.")
