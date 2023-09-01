@@ -5,13 +5,17 @@ from typing import Callable
 
 
 class GradioChatWebUI:
+    """
+    `GradioChatWebUI` allows you to create a chatbot WebUI with Gradio.
+    """
+
     def __init__(
             self, bot_callback: Callable[[str],
                                          str],
             title: str, header: str, chatbox_height=400, input_placeholder="Type your message here...",
             send_button_text="Send", clear_button_text="🗑️", server_port=8000, share=True, colab_stay_awake=False):
         """
-        #### Creates a WebUI for a chatbot.
+        Creates a WebUI for a chatbot.
 
         Args:
             bot_callback (Callable[[str], str]): This is the function WebUI calls for interacting with the chatbot.
@@ -102,9 +106,13 @@ class GradioChatWebUI:
 
 
 class Tester:
+    """
+    `Tester` allows you to test your chatbot by asking questions and saving the results to a CSV file. You can also use a CSV file to test your chatbot.
+    """
+
     def __init__(self, bot_callback: Callable[[str], str], questions: list[str], questions_csv_path=""):
         """
-        #### Creates a tester for a chatbot.
+        Creates a tester for a chatbot.
 
         Args:
             bot_callback (Callable[[str], str]): This is the function Tester calls for interacting with the chatbot.
