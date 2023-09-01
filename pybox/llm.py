@@ -4,7 +4,7 @@ import time
 from typing import Callable
 
 
-class ChatWebUI:
+class GradioChatWebUI:
     def __init__(
             self, bot_callback: Callable[[str],
                                          str],
