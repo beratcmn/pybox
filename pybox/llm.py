@@ -66,11 +66,11 @@ class GradioChatWebUI:
             chatbot = gr.Chatbot(show_label=False).style(height=self.chatbox_height)
 
             with gr.Row():
-                with gr.Column(scale=0.90):
+                with gr.Column(scale=0.80):
                     msg = gr.Textbox(placeholder=self.input_placeholder, show_label=False).style(container=False)
-                with gr.Column(scale=0.05):
+                with gr.Column(scale=0.10):
                     submit = gr.Button(self.send_button_text)
-                with gr.Column(scale=0.05):
+                with gr.Column(scale=0.10):
                     clear = gr.Button(self.clear_button_text)
 
             def user(user_message, history):
