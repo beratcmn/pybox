@@ -67,7 +67,7 @@ class GradioChatWebUI:
 
             with gr.Row():
                 with gr.Column(scale=0.80):
-                    msg = gr.Textbox(placeholder=self.input_placeholder, show_label=False).style(container=False)
+                    msg = gr.Textbox(placeholder=self.input_placeholder, show_label=False) #.style(container=False)
                 with gr.Column(scale=0.10):
                     submit = gr.Button(self.send_button_text)
                 with gr.Column(scale=0.10):
