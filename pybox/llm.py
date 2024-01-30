@@ -97,8 +97,9 @@ class GradioChatWebUI:
             clear.click(lambda: None, None, chatbot, queue=False)
 
             gr.close_all()
-            app.queue(concurrency_count=4)
-            app.launch(share=self.share, server_port=self.server_port)
+            # app.queue(concurrency_count=4)
+            app.queue()
+            app.launch(share=self.share, server_port=self.server_port, max_threads=2)
 
             while self.colab_stay_awake:
                 time.sleep(600)
