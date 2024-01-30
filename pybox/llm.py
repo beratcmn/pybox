@@ -63,7 +63,7 @@ class GradioChatWebUI:
             app.title = self.title if self.title != "" else "WebUI"
             gr.Markdown(self.header)
 
-            chatbot = gr.Chatbot(show_label=False).style(height=self.chatbox_height)
+            chatbot = gr.Chatbot(show_label=False) #.style(height=self.chatbox_height)
 
             with gr.Row():
                 with gr.Column(scale=0.80):
